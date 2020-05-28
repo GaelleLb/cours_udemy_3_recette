@@ -2,9 +2,30 @@
 
 {% block title %}Aliments{% endblock %}
 
-{% block montitre %}Liste des aliments {% endblock %}
+{% block montitre %}
+    Liste des aliments 
+    {% if isCalorie %}
+        avec moins de 20 calories
+    {% elseif isGlucide %}
+        avec moins de 5 glucides
+    {% endif %}
+{% endblock %}
 
 {% block body %}
+
+<div class="dropdown m-4">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Trier les aliments par :
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{{path('aliments')}}">Tous les aliments</a>
+        <a class="dropdown-item" href="{{path('alimentsParCalorie',{"calorie":20})}}">moins de 20 calories au 100g</a>
+        <a class="dropdown-item" href="{{path('alimentsParGlucide',{"glucide":5})}}">moins de 5 glucide au 100g</a>
+
+    </div>
+</div>
+
+
 
 <div class="row">
     {% for aliment in aliments %}
