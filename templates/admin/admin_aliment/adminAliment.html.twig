@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'administration{% endblock %}
+
+{% block montitre %}Gérer la liste des Aliments{% endblock %}
+
+{% block body %}
+
+    <div class="offset-1 col-10">
+        <a class="btn btn-success" href="#">Ajouter</a>
+        <table class="table border">
+            <tr class="table-info">
+                <td>Image</td>
+                <td>Aliment</td>
+                <td>Prix</td>
+                <td>Calories</td>
+                <td>Protéines</td>
+                <td>Glucides</td>
+                <td>Lipides</td>
+                <td>Actions</td>
+            </tr>
+            {% for aliment in aliments %}
+                <tr>
+                    <td><img src="{{asset('images/aliments/' ~ aliment.image)}}"  class="img_aliment_admin" alt=""></td>
+                    <td><strong>{{aliment.nom }}</strong></td>
+                    <td>{{aliment.prix}}</td>
+                    <td>{{aliment.calorie}}</td>
+                    <td>{{aliment.proteine}}</td>
+                    <td>{{aliment.glucide}}</td>
+                    <td>{{aliment.lipide}}</td>
+                    <td>
+                        <a href="" class="btn btn-warning">Modifier</a>
+                        <a href="" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+{% endblock %}
