@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aliment{% endblock %}
+
+{% block montitre %}{{ aliment.nom}}}}{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-2">
+        <img src="{{asset("images/aliments" ~ aliment.image)}}" alt="">
+    </div>
+    <div class="col">
+        <h5>{{aliment.nom}}</h5>
+        <p >prix : {{ aliment.prix }}</p>
+        <p>calorie : {{ aliment.calorie }}</p>
+        <p>proteine : {{ aliment.proteine }}</p>
+        <p>glucide : {{ aliment.glucide }}</p>
+        <p>lipide : {{ aliment.lipide }}</p>
+    </div>
+</div>
+    
+{% endblock %}
