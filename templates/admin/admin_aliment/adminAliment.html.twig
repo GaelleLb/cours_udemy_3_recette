@@ -6,9 +6,15 @@
 
 {% block body %}
 
+{% for message in app.flashes('success') %} 
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
     <div class="offset-1 col-10">
-        <a class="btn btn-success" href="#">Ajouter</a>
-        <table class="table border">
+        <a class="btn btn-success" href="{{path('admin_aliment_ajouter')}}">Ajouter</a>
+        <table class="table border mt-2">
             <tr class="table-info">
                 <td>Image</td>
                 <td>Aliment</td>
@@ -29,8 +35,12 @@
                     <td>{{aliment.glucide}}</td>
                     <td>{{aliment.lipide}}</td>
                     <td>
-                        <a href="" class="btn btn-warning">Modifier</a>
-                        <a href="" class="btn btn-danger">Supprimer</a>
+                        <a href="{{path('admin_aliment_modifier', {'id' : aliment.id})}}" class="btn btn-warning m-1">Modifier</a>
+                        <form class="m-1" style="display:inline-block" method="POST" action="{{path('admin_aliment_supprimer', {'id' : aliment.id})}}" onsubmit="return confirm('Confirmer la suppression ? ')">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ aliment.id)}}">
+                            <input type="submit" class="btn btn-danger" value="supprimer">
+                        </form>
                     </td>
                 </tr>
             {% endfor %}

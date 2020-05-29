@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AlimentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AlimentRepository::class)
@@ -19,11 +20,21 @@ class Aliment
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     * min=2, 
+     * max=30,
+     * minMessage="Le nom doit faire minimum 2 caractères",
+     * maxMessage="Le nom doit faire 30 caractères maximum" )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Range(
+     * min=0.1, 
+     * max=100,
+     * minMessage="Le prix doit être suppérieur à 0.1€,
+     * maxMessage="Le prix doit être inférieur à 100€)
      */
     private $prix;
 
